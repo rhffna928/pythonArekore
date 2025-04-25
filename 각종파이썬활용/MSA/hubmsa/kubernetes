@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqtt-router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mqtt-router
+  template:
+    metadata:
+      labels:
+        app: mqtt-router
+    spec:
+      containers:
+      - name: mqtt-router
+        image: myrepo/mqtt-router:latest
+        ports:
+        - containerPort: 1883
+        env:
+        - name: BROKER
+          value: "mqtt-broker-service"
+        - name: PORT
+          value: "1883"

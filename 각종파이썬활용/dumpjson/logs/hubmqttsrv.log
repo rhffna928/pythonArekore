@@ -1,0 +1,190 @@
+2024-10-16 10:57:43,949 - INFO - [474286407.py:155] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 10:57:43,952 - ERROR - [474286407.py:161] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\474286407.py", line 159, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\474286407.py", line 83, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1005, in connect_async
+    raise ValueError('Invalid host.')
+ValueError: Invalid host.
+2024-10-16 11:03:57,539 - INFO - [3230252332.py:168] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:03:57,539 - INFO - [3230252332.py:168] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:03:57,543 - ERROR - [3230252332.py:176] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3230252332.py", line 174, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3230252332.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:03:57,543 - ERROR - [3230252332.py:176] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3230252332.py", line 174, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3230252332.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:04:36,189 - INFO - [721656644.py:171] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:04:36,189 - INFO - [721656644.py:171] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:04:36,189 - INFO - [721656644.py:171] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:04:36,191 - ERROR - [721656644.py:179] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 177, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:04:36,191 - ERROR - [721656644.py:179] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 177, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:04:36,191 - ERROR - [721656644.py:179] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 177, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\721656644.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:07:09,543 - INFO - [3101029837.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:07:09,543 - INFO - [3101029837.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:07:09,543 - INFO - [3101029837.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:07:09,543 - INFO - [3101029837.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:07:09,548 - ERROR - [3101029837.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:07:09,548 - ERROR - [3101029837.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:07:09,548 - ERROR - [3101029837.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:07:09,548 - ERROR - [3101029837.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\3101029837.py", line 92, in start
+    self.client.connect(self.host, self.port, keepalive=60)
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 939, in connect
+    self.connect_async(host, port, keepalive,
+  File "d:\python 관련\PythonDataWorkspace\.venv\lib\site-packages\paho\mqtt\client.py", line 1006, in connect_async
+    if port <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2024-10-16 11:14:03,933 - INFO - [2150990378.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:14:03,933 - INFO - [2150990378.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:14:03,933 - INFO - [2150990378.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:14:03,933 - INFO - [2150990378.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:14:03,933 - INFO - [2150990378.py:172] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:14:03,937 - ERROR - [2150990378.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 92, in start
+    self.client.on_connect(self.host, self.port, keepalive=60)
+TypeError: 'NoneType' object is not callable
+2024-10-16 11:14:03,937 - ERROR - [2150990378.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 92, in start
+    self.client.on_connect(self.host, self.port, keepalive=60)
+TypeError: 'NoneType' object is not callable
+2024-10-16 11:14:03,937 - ERROR - [2150990378.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 92, in start
+    self.client.on_connect(self.host, self.port, keepalive=60)
+TypeError: 'NoneType' object is not callable
+2024-10-16 11:14:03,937 - ERROR - [2150990378.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 92, in start
+    self.client.on_connect(self.host, self.port, keepalive=60)
+TypeError: 'NoneType' object is not callable
+2024-10-16 11:14:03,937 - ERROR - [2150990378.py:180] MQTT Connect Fail...
+Traceback (most recent call last):
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 178, in <module>
+    mqtt.start(subscribes)
+  File "C:\Users\강민국\AppData\Local\Temp\ipykernel_13000\2150990378.py", line 92, in start
+    self.client.on_connect(self.host, self.port, keepalive=60)
+TypeError: 'NoneType' object is not callable
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,273 - INFO - [538773380.py:173] logger path d:\python 관련\PythonDataWorkspace\각종파이썬활용\for문 활용\logs\hubmqttsrv.log
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,285 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/init]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,287 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/node/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,289 - INFO - [538773380.py:98] 구독토픽 추가 [edgeplatform/ctrlsub/#]
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
+2024-10-16 11:18:54,294 - INFO - [538773380.py:72] connected OK
