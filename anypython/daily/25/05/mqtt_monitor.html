@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Topic Monitor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .table-cell-truncate {
+            max-width: 200px; /* Adjust as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-4 sm:p-6">
+    <div class="container mx-auto bg-white shadow-xl rounded-lg p-6 w-full max-w-4xl">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-indigo-600">MQTT Topic Monitor</h1>
+            <p class="text-gray-600 mt-1">실시간으로 MQTT 토픽과 메시지를 모니터링합니다.</p>
+        </header>
+
+        <section id="connection-form" class="mb-6 p-6 bg-gray-50 rounded-lg shadow">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">브로커 접속 정보</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="broker-url" class="block text-sm font-medium text-gray-700">브로커 URL (예: ws://broker.hivemq.com)</label>
+                    <input type="text" id="broker-url" value="223.130.131.234" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="broker-port" class="block text-sm font-medium text-gray-700">포트 (예: 8000 for ws)</label>
+                    <input type="number" id="broker-port" value="31883" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">사용자 이름 (선택)</label>
+                    <input type="text" id="username" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">비밀번호 (선택)</label>
+                    <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex-grow">
+                    <label for="topic-subscribe" class="block text-sm font-medium text-gray-700">구독할 토픽 (예: /test/topic, #)</label>
+                    <input type="text" id="topic-subscribe" value="#" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <button id="connect-button" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                    연결
+                </button>
+            </div>
+        </section>
+
+        <div id="status-message" class="mb-4 p-3 rounded-md text-sm text-center"></div>
+
+        <section id="topics-display" class="mt-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">수신된 토픽 및 메시지</h2>
+            <div class="overflow-x-auto bg-white rounded-lg shadow">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">토픽</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">최근 메시지 (간략히)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">메시지 수</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topics-table-body" class="bg-white divide-y divide-gray-200">
+                        <tr id="no-data-row">
+                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                아직 수신된 메시지가 없습니다. 브로커에 연결하고 토픽을 구독해주세요.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+         <footer class="mt-10 text-center text-sm text-gray-500">
+            <p>&copy; 2025 MQTT Monitor. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const brokerUrlInput = document.getElementById('broker-url');
+        const brokerPortInput = document.getElementById('broker-port');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const topicSubscribeInput = document.getElementById('topic-subscribe');
+        const connectButton = document.getElementById('connect-button');
+        const statusMessageDiv = document.getElementById('status-message');
+        const topicsTableBody = document.getElementById('topics-table-body');
+        const noDataRow = document.getElementById('no-data-row');
+
+        let client = null;
+        const topicsData = {}; // { "topicName": { count: 0, lastMessage: "..." } }
+
+        function showStatus(message, isError = false) {
+            statusMessageDiv.textContent = message;
+            statusMessageDiv.className = `mb-4 p-3 rounded-md text-sm text-center ${isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`;
+        }
+
+        function updateTopicsTable() {
+            topicsTableBody.innerHTML = ''; // Clear existing rows
+
+            if (Object.keys(topicsData).length === 0) {
+                topicsTableBody.appendChild(noDataRow);
+                return;
+            }
+            
+            // Sort topics alphabetically for consistent display
+            const sortedTopics = Object.keys(topicsData).sort();
+
+            for (const topic of sortedTopics) {
+                const data = topicsData[topic];
+                const row = topicsTableBody.insertRow();
+                row.className = "hover:bg-gray-50 transition-colors duration-150";
+
+                const topicCell = row.insertCell();
+                topicCell.className = "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900";
+                topicCell.textContent = topic;
+
+                const messageCell = row.insertCell();
+                messageCell.className = "px-6 py-4 whitespace-nowrap text-sm text-gray-500 table-cell-truncate";
+                messageCell.title = data.lastMessage; // Show full message on hover
+                messageCell.textContent = data.lastMessage.substring(0, 50) + (data.lastMessage.length > 50 ? '...' : '');
+
+
+                const countCell = row.insertCell();
+                countCell.className = "px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center";
+                countCell.textContent = data.count;
+            }
+        }
+
+        connectButton.addEventListener('click', () => {
+            if (client && client.connected) {
+                // Disconnect
+                client.end(true, () => { // Pass true for force, and a callback
+                    showStatus('브로커 연결이 해제되었습니다.');
+                    connectButton.textContent = '연결';
+                    connectButton.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    connectButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                    // Clear topics data and table
+                    Object.keys(topicsData).forEach(key => delete topicsData[key]);
+                    updateTopicsTable();
+                });
+            } else {
+                // Connect
+                const brokerUrl = parseInt(brokerUrlInput.value.trim());
+                const port = parseInt(brokerPortInput.value.trim(), 10);
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                const topicToSubscribe = topicSubscribeInput.value.trim();
+
+                if (!brokerUrl || !port) {
+                    showStatus('브로커 URL과 포트를 입력해주세요.', true);
+                    return;
+                }
+
+                const fullBrokerUrl = `${brokerUrl}:${port}`;
+                const options = {
+                    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+                    keepalive: 60,
+                    reconnectPeriod: 1000, // milliseconds
+                    connectTimeout: 30 * 1000, // milliseconds
+                };
+
+                if (username) options.username = username;
+                if (password) options.password = password;
+
+                showStatus('브로커에 연결 중...');
+                client = mqtt.connect(fullBrokerUrl, options);
+
+                client.on('connect', () => {
+                    showStatus(`브로커 (${fullBrokerUrl})에 성공적으로 연결되었습니다.`);
+                    connectButton.textContent = '연결 해제';
+                    connectButton.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                    connectButton.classList.add('bg-red-500', 'hover:bg-red-600');
+                    
+                    if (topicToSubscribe) {
+                        client.subscribe(topicToSubscribe, { qos: 0 }, (err) => {
+                            if (err) {
+                                showStatus(`토픽 '${topicToSubscribe}' 구독 실패: ${err.message}`, true);
+                            } else {
+                                showStatus(`브로커에 연결되었고 '${topicToSubscribe}' 토픽을 구독합니다.`);
+                            }
+                        });
+                    }
+                });
+
+                client.on('message', (topic, message) => {
+                    const messageString = message.toString();
+                    if (topicsData[topic]) {
+                        topicsData[topic].count++;
+                        topicsData[topic].lastMessage = messageString;
+                    } else {
+                        topicsData[topic] = {
+                            count: 1,
+                            lastMessage: messageString
+                        };
+                    }
+                    if (noDataRow.parentNode) { // if no-data-row is still in the table
+                         noDataRow.remove();
+                    }
+                    updateTopicsTable();
+                });
+
+                client.on('error', (err) => {
+                    showStatus(`연결 오류: ${err.message}`, true);
+                    if (client) client.end(); // Attempt to close the connection
+                    connectButton.textContent = '연결';
+                    connectButton.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    connectButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                });
+
+                client.on('close', () => {
+                    if (connectButton.textContent === '연결 해제') { // Only show if not manually disconnected
+                        showStatus('브로커 연결이 닫혔습니다. 재연결을 시도합니다...');
+                    }
+                });
+                
+                client.on('offline', () => {
+                     showStatus('브로커가 오프라인 상태입니다.', true);
+                });
+
+                client.on('reconnect', () => {
+                    showStatus('브로커에 재연결 중...');
+                });
+            }
+        });
+
+        // Initial table setup
+        updateTopicsTable();
+    </script>
+</body>
+</html>
